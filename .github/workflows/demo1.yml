@@ -2,7 +2,12 @@ name: Events Demo 1
 on:
   pull_request:
     types: [opened] #activity types: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request
+    branches: [main, dev-*, feat/**]
   workflow_dispatch:
+  push:
+    branches: [main, dev-*, feat/**] #https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#push
+    paths-ignore:
+      - ".github/workflows/**" #ignore changes in workflows folder
 jobs:
   deploy:
     runs-on: ubuntu-latest
